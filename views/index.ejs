@@ -1,0 +1,32 @@
+<h2>Recent Orders</h2>
+<div class="orders-grid">
+  <% if (orders.length === 0) { %>
+    <p style="text-align: center; grid-column: 1/-1;">No orders yet. Create your first one below 👇</p>
+  <% } else { %>
+    <% orders.slice(0, 5).forEach(order => { %>
+      <div class="order-card">
+        <h3><%= order.customerName %></h3>
+        <p><strong><%= order.quantity %> × <%= order.coffeeType %></strong> (<%= order.size %>)</p>
+        <small><%= new Date(order.createdAt).toLocaleString() %> • <%= order.status %></small>
+        
+        <div class="actions">
+          <a href="/orders/<%= order.id %>/edit" class="btn-edit">Edit</a>
+          
+          <form action="/orders/<%= order.id %>?_method=DELETE" method="POST" style="display: inline-flex;">
+            <button type="submit" class="btn-delete" onclick="return confirm('Delete this order?')">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <div class="order-card new-order-card">
+    <div class="new-order-content">
+      <div class="plus-icon">+</div>
+      <h3>New Order</h3>
+      <p>Place a fresh coffee order</p>
+      <a href="/orders/new" class="btn-new">Create Order</a>
+    </div>
+  </div>
+</div>
+<a href="/orders" class="view-all">View All Orders →</a>

@@ -1,0 +1,46 @@
+<h2>All Orders</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Coffee</th>
+      <th>Size</th>
+      <th>Qty</th>
+      <th>Time</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.forEach(order=> { %>
+      <tr>
+        <td>
+          <%= order.customerName %>
+        </td>
+        <td>
+          <%= order.coffeeType %>
+        </td>
+        <td>
+          <%= order.size %>
+        </td>
+        <td>
+          <%= order.quantity %>
+        </td>
+        <td>
+          <%= new Date(order.createdAt).toLocaleString() %>
+        </td>
+        <td>
+          <a href="/orders/<%= order.id %>/edit" class="btn-edit">Edit</a>
+          <form action="/orders/<%= order.id %>?_method=DELETE" method="POST" style="display:inline-flex;background-color: white;box-shadow: 0 0 0 ;margin: 0;padding: 0;">
+            <button type="submit" class="btn-delete" onclick="return confirm('Delete?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+  </tbody>
+</table>
+<div style="text-align: right; margin-bottom: 20px;">
+  <a href="/orders/new" class="btn-new">
+    Place New Order
+  </a>
+</div>
