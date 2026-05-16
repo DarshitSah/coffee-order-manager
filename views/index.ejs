@@ -1,7 +1,7 @@
 <h2>Recent Orders</h2>
 <div class="orders-grid">
   <% if (orders.length === 0) { %>
-    <p style="text-align: center; grid-column: 1/-1;">No orders yet. Create your first one below 👇</p>
+    <p style="text-align: center; grid-column: 1/-1;">No orders yet. Create your first one below </p>
   <% } else { %>
     <% orders.slice(0, 5).forEach(order => { %>
       <div class="order-card">
